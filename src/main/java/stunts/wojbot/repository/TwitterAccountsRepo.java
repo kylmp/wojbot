@@ -11,6 +11,6 @@ public interface TwitterAccountsRepo extends CrudRepository<TwitterAccount, Stri
 
     Optional<TwitterAccount> findByHandle(String handle);
 
-    Iterable<TwitterAccount> findAllByMuteEquals(boolean isMuted);
+    Optional<Iterable<TwitterAccount>> findAllByMuteEquals(boolean isMuted);
 
 }

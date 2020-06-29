@@ -22,6 +22,7 @@ import stunts.wojbot.repository.TwitterAccountsRepo;
 import stunts.wojbot.repository.TwitterKeywordsRepo;
 
 import java.awt.*;
+import java.text.MessageFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -69,9 +70,9 @@ public class TwitterService {
             log.debug("No twitter oauth token provided, twitter service is disabled");
         }
         else {
-            Iterable<TwitterAccount> accounts = twitterAccountsRepo.findAll();
-            for (TwitterAccount account : accounts) {
-                if (!account.isMute()) {
+            Optional<Iterable<TwitterAccount>> accounts = twitterAccountsRepo.findAllByMuteEquals(false);
+            if (accounts.isPresent()) {
+                for (TwitterAccount account : accounts.get()) {
                     analyzeTimeline(account);
                 }
             }
@@ -87,9 +88,12 @@ public class TwitterService {
     private void analyzeTimeline(TwitterAccount account) {
 
         Date updateDate = new Date();
-        String url = "https://api.twitter.com/1.1/statuses/user_timeline.json" +
-                "?user_id="+account.getUserId()+"&since_id="+account.getLastReadId()+"&tweet_mode=extended";
-        ResponseEntity<String> responseString = restTemplate.exchange(url, HttpMethod.GET, getHttpEntity(), String.class);
+        String userTimelineUrlFormat = "https://api.twitter.com/1.1/statuses/user_timeline.json?user_id={0}&since_id={1}&tweet_mode=extended";
+        ResponseEntity<String> responseString = restTemplate.exchange(
+                MessageFormat.format(userTimelineUrlFormat, account.getUserId(), account.getLastReadId()),
+                HttpMethod.GET,
+                getHttpEntity(),
+                String.class);
 
         try {
             JSONArray response = new JSONArray(responseString.getBody());

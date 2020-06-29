@@ -9,14 +9,7 @@ import org.springframework.stereotype.Service;
 public class ReactionHandler {
 
     public void handleReaction(MessageReactionAddEvent event) {
-//        User reactor = event.getMember().getUser();
-//        MessageReaction reaction = event.getReaction();
-//
-//        if (reactor.isBot()) {
-//            return;
-//        }
-//
-//        event.getChannel().sendMessage(reactor.getName()+" reacted with "+ reaction.getReactionEmote().getName()).queue();
+        // Not Implemented
     }
 
 }

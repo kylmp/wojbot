@@ -20,4 +20,7 @@ public class BotInfo {
     @Value("${bot.color:536870911}")
     private int color;
 
+    @Value("${bot.game:Basketball}")
+    private String game;
+
 }

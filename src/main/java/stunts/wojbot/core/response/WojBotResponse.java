@@ -48,10 +48,6 @@ public class WojBotResponse {
     }
 
     public void addReaction(String reaction) {
-        this.setReaction(reaction);
-    }
-
-    public void setReaction(String reaction) {
         if (this.type == ResponseTypes.NONE) {
             this.type = ResponseTypes.REACTION;
         }

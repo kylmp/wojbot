@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table
+@Data
+@NoArgsConstructor
 public class TwitterKeywords {
 
     @Id

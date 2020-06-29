@@ -10,7 +10,6 @@ import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import stunts.wojbot.core.handler.MessageHandler;
@@ -37,7 +36,7 @@ public class WojBotInitializer extends ListenerAdapter {
         try {
             return new JDABuilder(AccountType.BOT)
                     .setToken(botInfo.getDiscordToken())
-                    .setGame(Game.watching("Basketball"))
+                    .setGame(Game.watching(botInfo.getGame()))
                     .setStatus(OnlineStatus.ONLINE)
                     .addEventListener(this)
                     .build();

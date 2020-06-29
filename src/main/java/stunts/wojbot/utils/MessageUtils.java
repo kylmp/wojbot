@@ -1,9 +1,7 @@
 package stunts.wojbot.utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MessageUtils {
 
@@ -35,11 +33,6 @@ public class MessageUtils {
             }
         }
         return args;
-    }
-
-    public static String getMsgFromArgNum(String[] arguments, int argNum) {
-        List<String> argsList = Arrays.asList(arguments);
-        return argsList.stream().skip(argNum).collect(Collectors.joining(" ")).toLowerCase();
     }
 
 }

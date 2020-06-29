@@ -54,7 +54,7 @@ public class MessageHandler {
     private WojBotUser retrieveUser(User author) {
         Optional<WojBotUser> user = userRepo.findById(author.getIdLong());
         WojBotUser wojBotUser;
-        boolean doUpdate = false;
+        boolean doUpdate;
         if (user.isPresent()) {
             wojBotUser = user.get();
             doUpdate = (System.currentTimeMillis() - wojBotUser.getUpdateDate().getTime()) > 86400000; // Update if record is a day old

@@ -70,7 +70,7 @@ public class WojBotUser {
     }
 
     public String deniedMessage() {
-        return "You do not have permission for this command";
+        return "You do not have permission to use this command";
     }
 
 }
