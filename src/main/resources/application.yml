@@ -1,0 +1,18 @@
+app:
+  version: @project.version@
+  name: @project.name@
+
+spring:
+  datasource:
+    platform: postgres
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+
+command:
+  trigger: "!"
+
+logging:
+  level:
+    root: INFO
